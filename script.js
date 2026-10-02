@@ -4,7 +4,6 @@ const themeButton =
 themeButton.addEventListener(
     "click",
     function () {
-
         document.body.classList.toggle("night");
 
         if (
@@ -14,7 +13,6 @@ themeButton.addEventListener(
         } else {
             themeButton.textContent = "🌙";
         }
-
     }
 );
 
@@ -23,7 +21,6 @@ const starsContainer =
     document.getElementById("stars");
 
 for (let i = 0; i < 80; i++) {
-
     const star =
         document.createElement("div");
 
@@ -39,7 +36,6 @@ for (let i = 0; i < 80; i++) {
         Math.random() * 3 + "s";
 
     starsContainer.appendChild(star);
-
 }
 
 
@@ -69,28 +65,23 @@ const userEntries =
 
 
 function getEntries() {
-
     return JSON.parse(
         localStorage.getItem(
             "laviDiaryEntries"
         )
     ) || [];
-
 }
 
 
 function saveEntries(entries) {
-
     localStorage.setItem(
         "laviDiaryEntries",
         JSON.stringify(entries)
     );
-
 }
 
 
 function getNextEntryNumber() {
-
     const entries =
         getEntries();
 
@@ -112,12 +103,10 @@ function getNextEntryNumber() {
     }
 
     return Math.max(...numbers) + 1;
-
 }
 
 
 function createEntryElement(entry) {
-
     const article =
         document.createElement("article");
 
@@ -165,9 +154,7 @@ function createEntryElement(entry) {
     deleteButton.addEventListener(
         "click",
         function () {
-
             deleteEntry(entry.id);
-
         }
     );
 
@@ -178,12 +165,10 @@ function createEntryElement(entry) {
     article.appendChild(deleteButton);
 
     return article;
-
 }
 
 
 function displayEntries() {
-
     userEntries.innerHTML = "";
 
     const entries =
@@ -200,19 +185,15 @@ function displayEntries() {
 
     entries.forEach(
         function (entry) {
-
             userEntries.appendChild(
                 createEntryElement(entry)
             );
-
         }
     );
-
 }
 
 
 function deleteEntry(id) {
-
     let entries =
         getEntries();
 
@@ -226,18 +207,15 @@ function deleteEntry(id) {
     saveEntries(entries);
 
     displayEntries();
-
 }
 
 
 addEntryButton.addEventListener(
     "click",
     function () {
-
         entryForm.classList.add("show");
 
         entryMiniTitle.focus();
-
     }
 );
 
@@ -245,13 +223,11 @@ addEntryButton.addEventListener(
 cancelEntryButton.addEventListener(
     "click",
     function () {
-
         entryForm.classList.remove("show");
 
         entryMiniTitle.value = "";
         entryTitle.value = "";
         entryText.value = "";
-
     }
 );
 
@@ -259,7 +235,6 @@ cancelEntryButton.addEventListener(
 saveEntryButton.addEventListener(
     "click",
     function () {
-
         const miniTitle =
             entryMiniTitle.value.trim();
 
@@ -275,18 +250,15 @@ saveEntryButton.addEventListener(
             title === "" ||
             text === ""
         ) {
-
             alert(
                 "Please fill in the mini title, title, and contents."
             );
 
             return;
-
         }
 
 
         const newEntry = {
-
             id: Date.now(),
 
             number:
@@ -300,7 +272,6 @@ saveEntryButton.addEventListener(
 
             text:
                 text
-
         };
 
 
@@ -319,7 +290,6 @@ saveEntryButton.addEventListener(
         entryText.value = "";
 
         entryForm.classList.remove("show");
-
     }
 );
 
@@ -362,23 +332,19 @@ let editingLetterId = null;
 
 
 function getLetters() {
-
     return JSON.parse(
         localStorage.getItem(
             "laviLoveLetters"
         )
     ) || [];
-
 }
 
 
 function saveLetters(letters) {
-
     localStorage.setItem(
         "laviLoveLetters",
         JSON.stringify(letters)
     );
-
 }
 
 
@@ -386,7 +352,6 @@ function createLetterElement(
     letter,
     number
 ) {
-
     const article =
         document.createElement("div");
 
@@ -408,23 +373,24 @@ function createLetterElement(
         "letter-display";
 
 
-    const paragraphs =
-        letter.text.split(
-            /\r?\n/
-        );
+    const lines =
+        letter.text.split(/\r?\n/);
 
 
-    paragraphs.forEach(
-        function (paragraph) {
+    lines.forEach(
+        function (line, index) {
+            content.appendChild(
+                document.createTextNode(line)
+            );
 
-            const p =
-                document.createElement("p");
-
-            p.textContent =
-                paragraph;
-
-            content.appendChild(p);
-
+            if (
+                index <
+                lines.length - 1
+            ) {
+                content.appendChild(
+                    document.createElement("br")
+                );
+            }
         }
     );
 
@@ -449,7 +415,6 @@ function createLetterElement(
     editButton.addEventListener(
         "click",
         function () {
-
             editingLetterId =
                 letter.id;
 
@@ -464,7 +429,6 @@ function createLetterElement(
                 "none";
 
             letterText.focus();
-
         }
     );
 
@@ -482,26 +446,22 @@ function createLetterElement(
     deleteButton.addEventListener(
         "click",
         function () {
-
             let letters =
                 getLetters();
 
             letters =
                 letters.filter(
                     function (item) {
-
                         return (
                             item.id !==
                             letter.id
                         );
-
                     }
                 );
 
             saveLetters(letters);
 
             displayLetters();
-
         }
     );
 
@@ -520,38 +480,31 @@ function createLetterElement(
     article.appendChild(actions);
 
     return article;
-
 }
 
 
 function displayLetters() {
-
     lettersContainer.innerHTML = "";
 
     const letters =
         getLetters();
 
-
     letters.forEach(
         function (letter, index) {
-
             lettersContainer.appendChild(
                 createLetterElement(
                     letter,
                     index + 1
                 )
             );
-
         }
     );
-
 }
 
 
 newLetterButton.addEventListener(
     "click",
     function () {
-
         editingLetterId = null;
 
         letterText.value = "";
@@ -564,7 +517,6 @@ newLetterButton.addEventListener(
             "none";
 
         letterText.focus();
-
     }
 );
 
@@ -572,19 +524,16 @@ newLetterButton.addEventListener(
 saveLetterButton.addEventListener(
     "click",
     function () {
-
         const text =
             letterText.value.trim();
 
 
         if (text === "") {
-
             alert(
                 "Please write something before saving."
             );
 
             return;
-
         }
 
 
@@ -595,37 +544,27 @@ saveLetterButton.addEventListener(
         if (
             editingLetterId !== null
         ) {
-
             const letter =
                 letters.find(
                     function (item) {
-
                         return (
                             item.id ===
                             editingLetterId
                         );
-
                     }
                 );
 
 
             if (letter) {
-
                 letter.text =
                     text;
-
             }
 
         } else {
-
             letters.push({
-
                 id: Date.now(),
-
                 text: text
-
             });
-
         }
 
 
@@ -643,7 +582,6 @@ saveLetterButton.addEventListener(
             "inline-block";
 
         editingLetterId = null;
-
     }
 );
 
@@ -651,7 +589,6 @@ saveLetterButton.addEventListener(
 cancelLetterButton.addEventListener(
     "click",
     function () {
-
         letterText.value = "";
 
         letterEditor.classList.remove(
@@ -662,7 +599,6 @@ cancelLetterButton.addEventListener(
             "inline-block";
 
         editingLetterId = null;
-
     }
 );
 
