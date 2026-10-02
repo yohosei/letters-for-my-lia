@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lavi's Archive</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="sunset">
+
+    <div class="sky">
+        <div class="sun"></div>
+
+        <div class="moon">
+            <div class="moon-cut"></div>
+        </div>
+
+        <div id="stars"></div>
+    </div>
+
+    <header class="navbar">
+
+        <div class="logo">
+            written by Lavi 🌷
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#diary">Diary</a>
+            <a href="#letter">Letter</a>
+        </nav>
+
+        <button id="themeButton">🌙</button>
+
+    </header>
+
+    <section id="home" class="hero">
+
+        <p class="small-title">
+            lavi's collection of thoughts
+        </p>
+
+        <h1>
+            To the girl who makes
+            <span>ordinary moments feel special.</span>
+        </h1>
+
+        <p class="intro">
+            I don't think you realize how much meaning
+            I find in the smallest moments with you.
+            A conversation, a smile, a passing glance—
+            somehow, the little things stay with me.
+        </p>
+
+        <a href="#diary" class="button">
+            dive into the depths of my mind →
+        </a>
+
+    </section>
+
+    <section class="quote-section">
+
+        <div class="quote-card">
+
+            <div class="quote-mark">
+                “
+            </div>
+
+            <p>
+                Maybe that's what I adore most about you.
+                It's not one grand thing.
+                It's everything.
+            </p>
+
+        </div>
+
+    </section>
+
+    <section id="diary" class="diary-section">
+
+        <p class="small-title">
+            pages I never had the courage to say out loud
+        </p>
+
+        <h2>
+            my train of thoughts
+        </h2>
+
+        <article class="diary-entry">
+
+            <p class="date">
+                Entry No. 01 · IX·XXIV·MMXXVI
+            </p>
+
+            <h3>
+                Fate had a completely different plan.
+            </h3>
+
+            <p>
+                I joined that gc expecting nothing more than a new friend.
+                I had no idea who you were or what lies ahead.
+                You don't have to do anything extraordinary for me to notice you.
+            </p>
+
+            <p>
+                Looking back, taking that leap to message you was the best
+                impulse I've ever had.
+            </p>
+
+        </article>
+
+        <article class="diary-entry">
+
+            <p class="date">
+                Entry No. 02 · IX·XXV·MMXXVI
+            </p>
+
+            <h3>
+                Building up the courage.
+            </h3>
+
+            <p>
+                I was on my way home from hanging out with my friends,
+                staring at my phone screen the whole ride back.
+            </p>
+
+            <p>
+                That was the day I finally decided to make the first move—
+                just to open a space that belonged to only the two of us.
+            </p>
+
+        </article>
+
+        <article class="diary-entry">
+
+            <p class="date">
+                Entry No. 03 · Endless Banter
+            </p>
+
+            <h3>
+                The best kind of nonsense.
+            </h3>
+
+            <p>
+                We can spend hours talking about completely random,
+                senseless things and somehow laugh at every single bad joke.
+            </p>
+
+            <p>
+                I just love getting to know you—no rush, no expectations,
+                just enjoying every quiet conversation as it comes.
+            </p>
+
+        </article>
+
+        <article class="diary-entry">
+
+            <p class="date">
+                Entry No. 04 · Vivid Hues
+            </p>
+
+            <h3>
+                The world looks different when you're in it.
+            </h3>
+
+            <p>
+                I notice how everything becomes so vivid whenever we interact—
+                like the contrast turned up on ordinary days.
+            </p>
+
+            <p>
+                The muted tones dissolve, and suddenly even the quietest
+                moments feel saturated with light.
+            </p>
+
+        </article>
+
+        <article class="diary-entry">
+
+            <p class="date">
+                Entry No. 05 · Why I Adore You
+            </p>
+
+            <h3>
+                It isn't just one thing.
+            </h3>
+
+            <p>
+                I adore the little details that make you, you.
+                The things you probably don't think twice about.
+            </p>
+
+            <p>
+                Maybe that's why this feeling is so difficult
+                to put into words.
+            </p>
+
+        </article>
+
+        <div id="userEntries"></div>
+
+        <div class="add-entry-area">
+
+            <button id="addEntryButton" class="add-entry-button">
+                + Add Thought or Entry
+            </button>
+
+        </div>
+
+        <div id="entryForm" class="entry-form">
+
+            <p class="form-eyebrow">
+                a new page
+            </p>
+
+            <h3>
+                Write something worth keeping.
+            </h3>
+
+            <label for="entryMiniTitle">
+                Mini title
+            </label>
+
+            <input
+                type="text"
+                id="entryMiniTitle"
+                placeholder="e.g. A quiet moment"
+                maxlength="80"
+            >
+
+            <label for="entryTitle">
+                Title
+            </label>
+
+            <input
+                type="text"
+                id="entryTitle"
+                placeholder="e.g. The little things"
+                maxlength="100"
+            >
+
+            <label for="entryText">
+                Contents
+            </label>
+
+            <textarea
+                id="entryText"
+                placeholder="Write your thoughts here..."
+                maxlength="3000"
+            ></textarea>
+
+            <div class="form-actions">
+
+                <button
+                    id="cancelEntryButton"
+                    class="cancel-button">
+                    Cancel
+                </button>
+
+                <button
+                    id="saveEntryButton"
+                    class="save-button">
+                    Save Entry 
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+ <section id="letter" class="letter-section">
+
+    <div class="letter-card">
+
+        <p class="small-title">
+            
+        </p>
+
+        <div id="lettersContainer"></div>
+
+        <div id="letterEditor" class="letter-editor">
+
+            <textarea
+                id="letterText"
+                placeholder="Write your letter here..."
+            ></textarea>
+
+            <div class="letter-actions">
+
+                <button
+                    id="cancelLetterButton"
+                    class="cancel-button"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    id="saveLetterButton"
+                    class="save-button"
+                >
+                    Save
+                </button>
+
+            </div>
+
+        </div>
+
+        <button
+            id="newLetterButton"
+            class="edit-letter-button"
+        >
+            + New Letter
+        </button>
+
+    </div>
+
+</section>
+    <footer class="site-footer">
+    <div class="footer-content">
+        <h3>The Lavi Archives</h3>
+        <p class="tagline">
+            a collection of quiet thoughts, simple moments, and unwritten notes.
+        </p>
+        <p class="credit">
+            made from pure adoration and genuine emotions.
+        </p>
+    </div>
+</footer>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
