@@ -639,4 +639,645 @@ footer {
         margin-right: 20px;
         padding: 25px;
     }
+}* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Georgia, "Times New Roman", serif;
+    overflow-x: hidden;
+    transition: background 1s ease, color 1s ease;
+}
+
+body.sunset {
+    background: linear-gradient(
+        180deg,
+        #f29c82 0%,
+        #f6a083 30%,
+        #f6b08c 55%,
+        #ed8b79 78%,
+        #b95e69 100%
+    );
+    color: #583b3b;
+}
+
+body.night {
+    background: linear-gradient(
+        180deg,
+        #11142e 0%,
+        #19183b 45%,
+        #28204a 75%,
+        #120f29 100%
+    );
+    color: #eee7f2;
+}
+
+.sky {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.sun {
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        #fff4c1 0%,
+        #ffe08c 45%,
+        #ffc06f 75%,
+        rgba(255, 190, 100, 0) 100%
+    );
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow:
+        0 0 45px rgba(255, 223, 143, 0.8),
+        0 0 100px rgba(255, 190, 110, 0.5);
+    transition: opacity 1s ease;
+}
+
+.moon {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #fff4c4;
+    top: 90px;
+    right: 12%;
+    opacity: 0;
+    box-shadow: 0 0 35px rgba(255, 244, 196, 0.5);
+    transition: opacity 1s ease;
+}
+
+.moon-cut {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #171633;
+    top: -22px;
+    left: 42px;
+}
+
+body.night .sun {
+    opacity: 0;
+}
+
+body.night .moon {
+    opacity: 1;
+}
+
+#stars {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+body.night #stars {
+    opacity: 1;
+}
+
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: white;
+    animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.2;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.navbar {
+    width: 100%;
+    padding: 25px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 18px;
+    font-style: italic;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 30px;
+}
+
+.navbar nav a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 15px;
+    transition: opacity 0.3s ease;
+}
+
+.navbar nav a:hover {
+    opacity: 0.55;
+}
+
+#themeButton {
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.hero {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1000px;
+    margin: auto;
+    padding: 80px 30px;
+}
+
+.small-title {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 12px;
+    opacity: 0.7;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    max-width: 900px;
+    font-size: clamp(45px, 7vw, 82px);
+    font-weight: 400;
+    line-height: 1.05;
+    margin-bottom: 30px;
+}
+
+.hero h1 span {
+    display: block;
+    font-style: italic;
+}
+
+.intro {
+    max-width: 600px;
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 35px;
+}
+
+.button {
+    display: inline-block;
+    width: fit-content;
+    padding: 13px 23px;
+    border: 1px solid currentColor;
+    border-radius: 30px;
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+}
+
+.quote-section {
+    padding: 80px 30px;
+}
+
+.quote-card {
+    max-width: 750px;
+    margin: auto;
+    text-align: center;
+}
+
+.quote-mark {
+    font-size: 70px;
+    line-height: 0.6;
+    opacity: 0.4;
+}
+
+.quote-card p {
+    font-size: 25px;
+    line-height: 1.7;
+    font-style: italic;
+}
+
+.diary-section {
+    max-width: 1000px;
+    margin: auto;
+    padding: 100px 30px;
+}
+
+.diary-section > h2 {
+    font-size: 55px;
+    font-weight: 400;
+    margin-bottom: 70px;
+}
+
+.diary-entry {
+    padding: 45px 50px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 15px 40px rgba(80, 40, 50, 0.12);
+}
+
+.diary-entry .date {
+    margin-bottom: 18px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+.diary-entry h3 {
+    font-size: 38px;
+    line-height: 1.3;
+    font-weight: 400;
+    margin-bottom: 28px;
+}
+
+.diary-entry > p:not(.date) {
+    max-width: 800px;
+    font-size: 18px;
+    line-height: 1.9;
+    margin-bottom: 25px;
+    white-space: pre-line;
+}
+
+.add-entry-area {
+    text-align: center;
+    padding: 50px 0 20px;
+}
+
+.add-entry-button {
+    border: 1px solid currentColor;
+    background: transparent;
+    color: inherit;
+    padding: 13px 24px;
+    border-radius: 30px;
+    font-family: inherit;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-entry-button:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.entry-form {
+    display: none;
+    max-width: 700px;
+    margin: 30px auto 70px;
+    padding: 35px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.entry-form.show {
+    display: block;
+}
+
+.form-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+    opacity: 0.7;
+    margin-bottom: 10px;
+}
+
+.entry-form h3 {
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+
+.entry-form label {
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 7px;
+    font-size: 14px;
+}
+
+.entry-form input,
+.entry-form textarea {
+    width: 100%;
+    border: 1px solid rgba(90, 50, 50, 0.25);
+    border-radius: 8px;
+    padding: 13px;
+    background: rgba(255, 255, 255, 0.3);
+    color: inherit;
+    font-family: inherit;
+    font-size: 16px;
+    outline: none;
+}
+
+.entry-form textarea {
+    min-height: 180px;
+    resize: vertical;
+}
+
+.entry-form input:focus,
+.entry-form textarea:focus {
+    border-color: currentColor;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.form-actions button {
+    border: none;
+    border-radius: 25px;
+    padding: 11px 20px;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.delete-entry {
+    border: none;
+    background: transparent;
+    color: inherit;
+    opacity: 0.45;
+    font-family: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.delete-entry:hover {
+    opacity: 1;
+}
+
+.letter-section {
+    padding: 80px 20px;
+}
+
+.letter-card {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.letter-card p:not(.small-title) {
+    font-size: 18px;
+    line-height: 1.9;
+    margin-bottom: 22px;
+}
+
+.saved-letter {
+    padding: 20px 0 35px;
+    margin-bottom: 35px;
+    border-bottom: 1px solid rgba(90, 50, 50, 0.2);
+}
+
+.saved-letter h2 {
+    margin-bottom: 25px;
+}
+
+.saved-letter .letter-display {
+    font-size: 18px;
+    line-height: 2;
+}
+
+.saved-letter .letter-display p {
+    margin: 0 0 22px;
+    text-indent: 2em;
+}
+
+.saved-letter .letter-display p:last-child {
+    margin-bottom: 0;
+}
+
+.saved-letter-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.saved-letter-actions button {
+    appearance: none;
+    -webkit-appearance: none;
+    font-family: inherit;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.edit-letter-button {
+    appearance: none;
+    -webkit-appearance: none;
+    display: inline-block;
+    margin-top: 25px;
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.16);
+    color: inherit;
+    font-family: inherit;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: none;
+}
+
+.edit-letter-button:hover {
+    background: rgba(255, 255, 255, 0.28);
+    border-color: rgba(255, 255, 255, 0.45);
+    transform: translateY(-1px);
+}
+
+body.night .edit-letter-button {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+body.night .edit-letter-button:hover {
+    background: rgba(255, 255, 255, 0.13);
+}
+
+.delete-letter-button {
+    padding: 9px 18px;
+    border: none;
+    border-bottom: 1px solid rgba(90, 50, 50, 0.3);
+    background: transparent;
+    color: inherit;
+    opacity: 0.6;
+}
+
+.delete-letter-button:hover {
+    opacity: 1;
+}
+
+.letter-editor {
+    display: none;
+    margin-top: 30px;
+}
+
+.letter-editor.show {
+    display: block;
+}
+
+.letter-editor textarea {
+    width: 100%;
+    min-height: 400px;
+    padding: 25px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    color: inherit;
+    font-family: inherit;
+    font-size: 18px;
+    line-height: 1.9;
+    resize: vertical;
+    outline: none;
+}
+
+.letter-editor textarea::placeholder {
+    color: inherit;
+    opacity: 0.5;
+}
+
+.letter-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.letter-actions button {
+    appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cancel-button {
+    padding: 10px 18px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.18);
+    color: inherit;
+}
+
+.save-button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.32);
+    color: inherit;
+}
+
+.cancel-button:hover {
+    background: rgba(255, 255, 255, 0.28);
+}
+
+.save-button:hover {
+    background: rgba(255, 255, 255, 0.45);
+}
+
+body.night .letter-editor textarea {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+body.night .cancel-button {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+body.night .save-button {
+    background: rgba(255, 255, 255, 0.13);
+}
+
+body.night .delete-letter-button {
+    border-bottom-color: rgba(255, 255, 255, 0.25);
+}
+
+footer {
+    text-align: center;
+    padding: 50px 20px;
+    font-size: 13px;
+    opacity: 0.65;
+}
+
+@media (max-width: 700px) {
+    .navbar {
+        padding: 20px;
+    }
+
+    .navbar nav {
+        gap: 15px;
+    }
+
+    .hero {
+        padding: 60px 20px;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+    }
+
+    .diary-section {
+        padding: 70px 20px;
+    }
+
+    .diary-section > h2 {
+        font-size: 42px;
+    }
+
+    .diary-entry {
+        padding: 35px 25px;
+    }
+
+    .diary-entry h3 {
+        font-size: 30px;
+    }
+
+    .letter-card {
+        padding: 35px 25px;
+    }
+
+    .entry-form {
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 25px;
+    }
 }
