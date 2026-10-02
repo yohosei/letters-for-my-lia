@@ -1,28 +1,45 @@
-const themeButton = document.getElementById("themeButton");
+const themeButton =
+    document.getElementById("themeButton");
 
-themeButton.addEventListener("click", function () {
-    document.body.classList.toggle("night");
+themeButton.addEventListener(
+    "click",
+    function () {
 
-    if (document.body.classList.contains("night")) {
-        themeButton.textContent = "🌅";
-    } else {
-        themeButton.textContent = "🌙";
+        document.body.classList.toggle("night");
+
+        if (
+            document.body.classList.contains("night")
+        ) {
+            themeButton.textContent = "🌅";
+        } else {
+            themeButton.textContent = "🌙";
+        }
+
     }
-});
+);
 
 
-const starsContainer = document.getElementById("stars");
+const starsContainer =
+    document.getElementById("stars");
 
 for (let i = 0; i < 80; i++) {
-    const star = document.createElement("div");
+
+    const star =
+        document.createElement("div");
 
     star.className = "star";
 
-    star.style.left = Math.random() * 100 + "%";
-    star.style.top = Math.random() * 100 + "%";
-    star.style.animationDelay = Math.random() * 3 + "s";
+    star.style.left =
+        Math.random() * 100 + "%";
+
+    star.style.top =
+        Math.random() * 100 + "%";
+
+    star.style.animationDelay =
+        Math.random() * 3 + "s";
 
     starsContainer.appendChild(star);
+
 }
 
 
@@ -52,44 +69,55 @@ const userEntries =
 
 
 function getEntries() {
+
     return JSON.parse(
-        localStorage.getItem("laviDiaryEntries")
+        localStorage.getItem(
+            "laviDiaryEntries"
+        )
     ) || [];
+
 }
 
 
 function saveEntries(entries) {
+
     localStorage.setItem(
         "laviDiaryEntries",
         JSON.stringify(entries)
     );
+
 }
 
 
 function getNextEntryNumber() {
-    const entries = getEntries();
+
+    const entries =
+        getEntries();
 
     if (entries.length === 0) {
         return 6;
     }
 
-    const numbers = entries
-        .map(function (entry) {
-            return Number(entry.number);
-        })
-        .filter(function (number) {
-            return !isNaN(number);
-        });
+    const numbers =
+        entries
+            .map(function (entry) {
+                return Number(entry.number);
+            })
+            .filter(function (number) {
+                return !isNaN(number);
+            });
 
     if (numbers.length === 0) {
         return 6;
     }
 
     return Math.max(...numbers) + 1;
+
 }
 
 
 function createEntryElement(entry) {
+
     const article =
         document.createElement("article");
 
@@ -137,7 +165,9 @@ function createEntryElement(entry) {
     deleteButton.addEventListener(
         "click",
         function () {
+
             deleteEntry(entry.id);
+
         }
     );
 
@@ -148,47 +178,66 @@ function createEntryElement(entry) {
     article.appendChild(deleteButton);
 
     return article;
+
 }
 
 
 function displayEntries() {
+
     userEntries.innerHTML = "";
 
     const entries =
         getEntries();
 
-    entries.sort(function (a, b) {
-        return Number(a.number) - Number(b.number);
-    });
+    entries.sort(
+        function (a, b) {
+            return (
+                Number(a.number) -
+                Number(b.number)
+            );
+        }
+    );
 
-    entries.forEach(function (entry) {
-        userEntries.appendChild(
-            createEntryElement(entry)
-        );
-    });
+    entries.forEach(
+        function (entry) {
+
+            userEntries.appendChild(
+                createEntryElement(entry)
+            );
+
+        }
+    );
+
 }
 
 
 function deleteEntry(id) {
+
     let entries =
         getEntries();
 
     entries =
-        entries.filter(function (entry) {
-            return entry.id !== id;
-        });
+        entries.filter(
+            function (entry) {
+                return entry.id !== id;
+            }
+        );
 
     saveEntries(entries);
 
     displayEntries();
+
 }
 
 
 addEntryButton.addEventListener(
     "click",
     function () {
+
         entryForm.classList.add("show");
+
         entryMiniTitle.focus();
+
     }
 );
 
@@ -196,11 +245,13 @@ addEntryButton.addEventListener(
 cancelEntryButton.addEventListener(
     "click",
     function () {
+
         entryForm.classList.remove("show");
 
         entryMiniTitle.value = "";
         entryTitle.value = "";
         entryText.value = "";
+
     }
 );
 
@@ -208,6 +259,7 @@ cancelEntryButton.addEventListener(
 saveEntryButton.addEventListener(
     "click",
     function () {
+
         const miniTitle =
             entryMiniTitle.value.trim();
 
@@ -223,15 +275,18 @@ saveEntryButton.addEventListener(
             title === "" ||
             text === ""
         ) {
+
             alert(
                 "Please fill in the mini title, title, and contents."
             );
 
             return;
+
         }
 
 
         const newEntry = {
+
             id: Date.now(),
 
             number:
@@ -245,6 +300,7 @@ saveEntryButton.addEventListener(
 
             text:
                 text
+
         };
 
 
@@ -263,6 +319,7 @@ saveEntryButton.addEventListener(
         entryText.value = "";
 
         entryForm.classList.remove("show");
+
     }
 );
 
@@ -271,64 +328,65 @@ displayEntries();
 
 
 const lettersContainer =
-    document.getElementById("lettersContainer");
+    document.getElementById(
+        "lettersContainer"
+    );
 
 const letterEditor =
-    document.getElementById("letterEditor");
+    document.getElementById(
+        "letterEditor"
+    );
 
 const letterText =
-    document.getElementById("letterText");
+    document.getElementById(
+        "letterText"
+    );
 
 const newLetterButton =
-    document.getElementById("newLetterButton");
+    document.getElementById(
+        "newLetterButton"
+    );
 
 const saveLetterButton =
-    document.getElementById("saveLetterButton");
+    document.getElementById(
+        "saveLetterButton"
+    );
 
 const cancelLetterButton =
-    document.getElementById("cancelLetterButton");
+    document.getElementById(
+        "cancelLetterButton"
+    );
 
 
 let editingLetterId = null;
 
 
 function getLetters() {
-    const saved =
-        localStorage.getItem("laviLoveLetters");
 
-    if (saved !== null) {
-        return JSON.parse(saved);
-    }
+    return JSON.parse(
+        localStorage.getItem(
+            "laviLoveLetters"
+        )
+    ) || [];
 
-    const originalLetter = [
-        {
-            id: 1,
-            text:
-`how are you? I just hope you're not drowning on the depths of me...
-
-sometimes I worry that my thoughts carry too much weight, or that the way I view the world can be overwhelming. but whenever I think of you, everything settles into place
-
-you don't have to carry any heavy expectations here. I just hope being in my life feels as soft and effortless as sitting under the same night sky, knowing there's always a quiet space kept just for you.
-
-either way, I'm glad I got to know you.`
-        }
-    ];
-
-    saveLetters(originalLetter);
-
-    return originalLetter;
 }
 
 
 function saveLetters(letters) {
+
     localStorage.setItem(
         "laviLoveLetters",
         JSON.stringify(letters)
     );
+
 }
 
 
-function createLetterElement(letter, number) {
+function createLetterElement(
+    letter,
+    number
+) {
+
     const article =
         document.createElement("div");
 
@@ -351,17 +409,24 @@ function createLetterElement(letter, number) {
 
 
     const paragraphs =
-        letter.text.split(/\n\s*\n/);
+        letter.text.split(
+            /\r?\n/
+        );
 
-    paragraphs.forEach(function (paragraph) {
-        const p =
-            document.createElement("p");
 
-        p.textContent =
-            paragraph.trim();
+    paragraphs.forEach(
+        function (paragraph) {
 
-        content.appendChild(p);
-    });
+            const p =
+                document.createElement("p");
+
+            p.textContent =
+                paragraph;
+
+            content.appendChild(p);
+
+        }
+    );
 
 
     const actions =
@@ -384,18 +449,22 @@ function createLetterElement(letter, number) {
     editButton.addEventListener(
         "click",
         function () {
+
             editingLetterId =
                 letter.id;
 
             letterText.value =
                 letter.text;
 
-            letterEditor.classList.add("show");
+            letterEditor.classList.add(
+                "show"
+            );
 
             newLetterButton.style.display =
                 "none";
 
             letterText.focus();
+
         }
     );
 
@@ -413,66 +482,89 @@ function createLetterElement(letter, number) {
     deleteButton.addEventListener(
         "click",
         function () {
+
             let letters =
                 getLetters();
 
             letters =
                 letters.filter(
                     function (item) {
-                        return item.id !== letter.id;
+
+                        return (
+                            item.id !==
+                            letter.id
+                        );
+
                     }
                 );
 
             saveLetters(letters);
 
             displayLetters();
+
         }
     );
 
 
-    actions.appendChild(editButton);
-    actions.appendChild(deleteButton);
+    actions.appendChild(
+        editButton
+    );
+
+    actions.appendChild(
+        deleteButton
+    );
+
 
     article.appendChild(title);
     article.appendChild(content);
     article.appendChild(actions);
 
     return article;
+
 }
 
 
 function displayLetters() {
+
     lettersContainer.innerHTML = "";
 
     const letters =
         getLetters();
 
+
     letters.forEach(
         function (letter, index) {
+
             lettersContainer.appendChild(
                 createLetterElement(
                     letter,
                     index + 1
                 )
             );
+
         }
     );
+
 }
 
 
 newLetterButton.addEventListener(
     "click",
     function () {
+
         editingLetterId = null;
 
         letterText.value = "";
 
-        letterEditor.classList.add("show");
+        letterEditor.classList.add(
+            "show"
+        );
 
         newLetterButton.style.display =
             "none";
 
         letterText.focus();
+
     }
 );
 
@@ -480,15 +572,19 @@ newLetterButton.addEventListener(
 saveLetterButton.addEventListener(
     "click",
     function () {
+
         const text =
             letterText.value.trim();
 
+
         if (text === "") {
+
             alert(
                 "Please write something before saving."
             );
 
             return;
+
         }
 
 
@@ -496,24 +592,40 @@ saveLetterButton.addEventListener(
             getLetters();
 
 
-        if (editingLetterId !== null) {
+        if (
+            editingLetterId !== null
+        ) {
+
             const letter =
                 letters.find(
                     function (item) {
-                        return item.id === editingLetterId;
+
+                        return (
+                            item.id ===
+                            editingLetterId
+                        );
+
                     }
                 );
 
+
             if (letter) {
+
                 letter.text =
                     text;
+
             }
 
         } else {
+
             letters.push({
+
                 id: Date.now(),
+
                 text: text
+
             });
+
         }
 
 
@@ -523,12 +635,15 @@ saveLetterButton.addEventListener(
 
         letterText.value = "";
 
-        letterEditor.classList.remove("show");
+        letterEditor.classList.remove(
+            "show"
+        );
 
         newLetterButton.style.display =
             "inline-block";
 
         editingLetterId = null;
+
     }
 );
 
@@ -536,14 +651,18 @@ saveLetterButton.addEventListener(
 cancelLetterButton.addEventListener(
     "click",
     function () {
+
         letterText.value = "";
 
-        letterEditor.classList.remove("show");
+        letterEditor.classList.remove(
+            "show"
+        );
 
         newLetterButton.style.display =
             "inline-block";
 
         editingLetterId = null;
+
     }
 );
 
